@@ -799,12 +799,12 @@ struct FpToFpOpConversion
     int inVecWidthBits = 32;
     int outVecWidthBits = 32;
     if (srcTy.isFloat8E4M3FNUZ() ||
-        (computeCapability >= 90 && srcTy.isFloat8E5M2() && dstTy.isF16())) {
+        (computeCapability >= 89 && srcTy.isFloat8E5M2() && dstTy.isF16())) {
       inVecWidthBits = 16;
       outVecWidthBits = 32;
     }
     if (dstTy.isFloat8E4M3FNUZ() ||
-        (computeCapability >= 90 && dstTy.isFloat8E5M2())) {
+        (computeCapability >= 89 && dstTy.isFloat8E5M2())) {
       inVecWidthBits = 32;
       outVecWidthBits = 16;
     }
@@ -815,10 +815,10 @@ struct FpToFpOpConversion
                    << "\n";
       llvm_unreachable("");
     }
-    if (computeCapability < 90 &&
+    if (computeCapability < 89 &&
         (srcTy.isFloat8E4M3FNUZ() || dstTy.isFloat8E4M3FNUZ())) {
       llvm::errs() << "Conversion from/to f8e4m3nv is only supported on "
-                      "compute capability >= 90"
+                      "compute capability >= 89"
                    << "\n";
       llvm_unreachable("");
     }
